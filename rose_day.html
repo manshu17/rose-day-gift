@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Rose Day</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe6f2; /* Light pink background */
+            color: #d63384; /* Dark pink text */
+            padding: 20px;
+            transition: background-color 0.5s, color 0.5s;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+        }
+        img {
+            max-width: 300px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none; /* Hidden initially */
+        }
+        .hearts {
+            font-size: 2em;
+            margin-top: 20px;
+        }
+        .heart {
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .customizer {
+            margin-top: 40px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        input, textarea, button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #d63384;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #b02a6a;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">Happy Rose Day! 🌹</h1>
+    <p id="message">Wishing you a day filled with love, beauty, and the sweet scent of roses. May your heart bloom with joy!</p>
+    
+    <img id=""Custom Image"" src="" alt="Custom Image">
+    
+    <div class="hearts" id="heartsContainer">
+        <span class="heart">❤️</span>
+        <span class="heart">💖</span>
+        <span class="heart">🌹</span>
+        <span class="heart">❤️</span>
+        <span class="heart">💖</span>
+    </div>
+
+    <div class="customizer">
+        <h2>Customize Your Page</h2>
+        <label for="titleInput">Title:</label>
+        <input type="text" id="titleInput" placeholder="e.g., Happy Rose Day! 🌹">
+        
+        <label for="messageInput">Message:</label>
+        <textarea id="messageInput" rows="3" placeholder="Your custom message..."></textarea>
+        
+        <label for="imageInput">Image URL (or leave blank for no image):</label>
+        <input type="url" id="imageInput" placeholder="https://example.com/your-image.jpg">
+        
+        <label for="heartsInput">Number of Hearts (1-10):</label>
+        <input type="number" id="heartsInput" min="1" max="10" value="5">
+        
+        <button onclick="applyCustomizations()">Apply Changes</button>
+    </div>
+
+    <script>
+        function applyCustomizations() {
+            // Update title
+            const title = document.getElementById('titleInput').value || 'Happy Rose Day! 🌹';
+            document.getElementById('title').textContent = title;
+            
+            // Update message
+            const message = document.getElementById('messageInput').value || 'Wishing you a day filled with love, beauty, and the sweet scent of roses. May your heart bloom with joy!';
+            document.getElementById('message').textContent = message;
+            
+            // Update image
+            const imageUrl = document.getElementById('imageInput').value;
+            const img = document.getElementById('customImage');
+            if (imageUrl) {
+                img.src = imageUrl;
+                img.style.display = 'block';
+            } else {
+                img.style.display = 'none';
+            }
+            
+            // Update hearts
+            const numHearts = parseInt(document.getElementById('heartsInput').value) || 5;
+            const heartsContainer = document.getElementById('heartsContainer');
+            heartsContainer.innerHTML = '';
+            const emojis = ['❤️', '💖', '🌹'];
+            for (let i = 0; i < numHearts; i++) {
+                const heart = document.createElement('span');
+                heart.className = 'heart';
+                heart.textContent = emojis[i % emojis.length];
+                heartsContainer.appendChild(heart);
+            }
+        }
+    </script>
+</body>
+</html>
